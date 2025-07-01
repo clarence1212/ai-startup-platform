@@ -55,7 +55,14 @@ export default function Home() {
 
       const data = await response.json();
       if (response.ok) {
-        setGeneratedContent(data.content);
+        // Handle the nested response structure
+        if (data.content && typeof data.content === 'object') {
+          setGeneratedContent(data.content.content); // Access the nested content
+        } else if (data.content && typeof data.content === 'string') {
+          setGeneratedContent(data.content);
+        } else {
+          setGeneratedContent(data);
+        }
       } else {
         alert(data.message || 'Content generation failed');
       }
