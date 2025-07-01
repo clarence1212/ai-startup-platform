@@ -9,7 +9,7 @@ const contentSchema = new mongoose.Schema({
   type: {
     type: String,
     enum: ['article', 'video_script', 'social_post'],
-    required: true
+    required: false
   },
   prompt: {
     type: String,
